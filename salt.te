@@ -88,10 +88,6 @@ sysnet_read_config(salt_t)
 sysnet_exec_ifconfig(salt_t)
 
 optional_policy(`
-    skyring_stream_connect(salt_t)
-')
-
-optional_policy(`
     systemd_exec_systemctl(salt_t)
     systemd_hostnamed_read_config(salt_t)
 ')
