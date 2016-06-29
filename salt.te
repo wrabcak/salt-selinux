@@ -88,6 +88,7 @@ corecmd_exec_bin(salt_t)
 
 corenet_tcp_bind_generic_node(salt_t)
 corenet_tcp_bind_salt_port(salt_t)
+corenet_tcp_connect_salt_port(salt_t)
 
 dev_read_sysfs(salt_t)
 
