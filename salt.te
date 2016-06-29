@@ -37,7 +37,7 @@ files_type(salt_tmp_t)
 #
 # salt local policy
 #
-allow salt_t self:capability { net_admin sys_rawio };
+allow salt_t self:capability { setgid setuid net_admin sys_rawio };
 allow salt_t self:capability2 block_suspend;
 allow salt_t self:netlink_route_socket { create_netlink_socket_perms };
 allow salt_t self:udp_socket { create_socket_perms };
@@ -118,4 +118,5 @@ optional_policy(`
 optional_policy(`
 	salt_stub_collectd()
 	allow collectd_t self:capability setgid;
+	salt_domtrans(collectd_t)
 ')
