@@ -100,6 +100,24 @@ interface(`salt_manage_cache_dirs',`
 
 ########################################
 ## <summary>
+##	Create specified objects in generic
+##	cache directories with the salt cache file type.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+#
+interface(`salt_filetrans_cache',`
+	gen_require(`
+		type avahi_var_run_t;
+	')
+
+	files_pid_filetrans($1, salt_cache_t, { dir file lnk_file })
+')
+
+########################################
+## <summary>
 ##	Read salt's data files.
 ## </summary>
 ## <param name="domain">
