@@ -346,3 +346,19 @@ interface(`salt_stub_collectd',`
 		type collectd_t;
 	')
 ')
+
+########################################
+## <summary>
+##	ceph_var_run_t stub interface.  No access allowed.
+## </summary>
+## <param name="domain" unused="true">
+##	<summary>
+##	Domain allowed access
+##	</summary>
+## </param>
+#
+interface(`salt_stub_ceph_pid',`
+	gen_require(`
+		type ceph_var_run_t;
+	')
+')
