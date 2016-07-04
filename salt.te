@@ -170,6 +170,14 @@ optional_policy(`
 	allow salt_t ceph_var_run_t:dir read;
 ')
 
+optional_policy(`
+	salt_stub_lvm()
+	allow salt_t lvm_t:dbus send_msg;
+')
+
+optional_policy(`
+	skyring_ps_process(salt_t)
+')
 
 # just testging
 optional_policy(`

@@ -362,3 +362,19 @@ interface(`salt_stub_ceph_pid',`
 		type ceph_var_run_t;
 	')
 ')
+
+########################################
+## <summary>
+##	lvm stub interface.  No access allowed.
+## </summary>
+## <param name="domain" unused="true">
+##	<summary>
+##	Domain allowed access
+##	</summary>
+## </param>
+#
+interface(`salt_stub_lvm',`
+	gen_require(`
+		type lvm_t;
+	')
+')
