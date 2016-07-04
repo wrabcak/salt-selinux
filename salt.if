@@ -376,5 +376,6 @@ interface(`salt_stub_ceph_pid',`
 interface(`salt_stub_lvm',`
 	gen_require(`
 		type lvm_t;
+		class dbus send_msg;
 	')
 ')
