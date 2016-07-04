@@ -33,6 +33,9 @@ files_config_file(salt_conf_t)
 type salt_tmp_t;
 files_type(salt_tmp_t)
 
+type collectd_conf_t;
+files_config_file(collectd_conf_t)
+
 permissive salt_t;
 
 ########################################
@@ -99,6 +102,7 @@ dmesg_domtrans(salt_t)
 
 files_read_kernel_modules(salt_t)
 fs_getattr_tmpfs(salt_t)
+fs_getattr_all_fs(salt_t)
 
 init_status(salt_t)
 init_exec_script_files(salt_t)
@@ -149,6 +153,16 @@ optional_policy(`
 	salt_stub_collectd()
 	allow collectd_t self:capability setgid;
 	salt_domtrans(collectd_t)
+	allow collectd_t self:netlink_audit_socket { nlmsg_relay create };
+	sudo_exec(collectd_t)
+	sysnet_exec_ifconfig(collectd_t)
+	corecmd_exec_bin(collectd_t)
+	corecmd_exec_shell(collectd_t)
+	allow salt_t collectd_conf_t:dir manage_dir_perms;
+	allow salt_t collectd_conf_t:file manage_file_perms;
+	allow collectd_t collectd_conf_t:file manage_file_perms;
+	allow collectd_t collectd_conf_t:dir manage_dir_perms;
+	allow collectd_t self:capability { setuid chown sys_resource audit_write };
 ')
 
 optional_policy(`
@@ -168,4 +182,7 @@ optional_policy(`
 	postfix_exec_master(salt_t)
 	raid_access_check_mdadm(salt_t)
 	sudo_exec(salt_t)
+	seutil_domtrans_semanage(salt_t)
+	seutil_domtrans_setsebool(salt_t)
+	seutil_exec_setfiles(salt_t)
 ')
